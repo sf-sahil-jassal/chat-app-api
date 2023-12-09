@@ -9,7 +9,13 @@
     "db:migrate-reset": "run-s db:migrate-reset:*",
     "db:migrate:auth-service": "db-migrate up --config auth-service/database.json -m auth-service/migrations",
     "db:migrate-down:auth-service": "db-migrate down --config auth-service/database.json -m auth-service/migrations",
-    "db:migrate-reset:auth-service": "db-migrate reset --config auth-service/database.json -m auth-service/migrations"
+    "db:migrate-reset:auth-service": "db-migrate reset --config auth-service/database.json -m auth-service/migrations",
+    "db:migrate:chat-service": "db-migrate up --config chat-service/database.json -m chat-service/migrations",
+    "db:migrate-down:chat-service": "db-migrate down --config chat-service/database.json -m chat-service/migrations",
+    "db:migrate-reset:chat-service": "db-migrate reset --config chat-service/database.json -m chat-service/migrations",
+    "db:migrate:notif-service": "db-migrate up --config notif-service/database.json -m notif-service/migrations",
+    "db:migrate-down:notif-service": "db-migrate down --config notif-service/database.json -m notif-service/migrations",
+    "db:migrate-reset:notif-service": "db-migrate reset --config notif-service/database.json -m notif-service/migrations"
   },
   "author": "",
   "license": "ISC",

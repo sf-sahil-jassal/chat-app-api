@@ -5,7 +5,9 @@
     "scripts": {
         "prepare": "husky install",
         "test": "lerna run test",
-        "docker:build:authentication-service": "docker build --build-arg SERVICE_NAME=authentication-service --build-arg FROM_FOLDER=services -t $REPOSITORY_URI-authentication-service:$CUSTOM_TAG -f ./services/auth-service/Dockerfile ."
+        "docker:build:authentication-service": "docker build --build-arg SERVICE_NAME=authentication-service --build-arg FROM_FOLDER=services -t $REPOSITORY_URI-authentication-service:$CUSTOM_TAG -f ./services/auth-service/Dockerfile .",
+        "docker:build:chat-service": "docker build --build-arg SERVICE_NAME=chat-service --build-arg FROM_FOLDER=services -t $REPOSITORY_URI-chat-service:$CUSTOM_TAG -f ./services/chat-service/Dockerfile .",
+        "docker:build:notification-service": "docker build --build-arg SERVICE_NAME=notification-service --build-arg FROM_FOLDER=services -t $REPOSITORY_URI-notification-service:$CUSTOM_TAG -f ./services/notif-service/Dockerfile ."
     },
     "devDependencies": {
         "@commitlint/cli": "^16.1.0",
