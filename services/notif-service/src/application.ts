@@ -1,9 +1,22 @@
 import {BootMixin} from '@loopback/boot';
 import {ApplicationConfig} from '@loopback/core';
+import {RepositoryMixin} from '@loopback/repository';
+import {RestApplication} from '@loopback/rest';
 import {
   RestExplorerBindings,
   RestExplorerComponent,
 } from '@loopback/rest-explorer';
+import {ServiceMixin} from '@loopback/service-proxy';
+import {
+  BearerVerifierBindings,
+  BearerVerifierComponent,
+  BearerVerifierConfig,
+  BearerVerifierType,
+  SECURITY_SCHEME_SPEC,
+  SFCoreBindings,
+  ServiceSequence,
+} from '@sourceloop/core';
+import {NotificationServiceComponent} from '@sourceloop/notification-service';
 import * as dotenv from 'dotenv';
 import * as dotenvExt from 'dotenv-extended';
 import {AuthenticationComponent} from 'loopback4-authentication';
@@ -11,19 +24,11 @@ import {
   AuthorizationBindings,
   AuthorizationComponent,
 } from 'loopback4-authorization';
+import {NotificationBindings} from 'loopback4-notifications';
 import {
-  ServiceSequence,
-  SFCoreBindings,
-  BearerVerifierBindings,
-  BearerVerifierComponent,
-  BearerVerifierConfig,
-  BearerVerifierType,
-  SECURITY_SCHEME_SPEC,
-} from '@sourceloop/core';
-import {NotificationServiceComponent} from '@sourceloop/notification-service';
-import {RepositoryMixin} from '@loopback/repository';
-import {RestApplication} from '@loopback/rest';
-import {ServiceMixin} from '@loopback/service-proxy';
+  SocketBindings,
+  SocketIOProvider,
+} from 'loopback4-notifications/socketio';
 import path from 'path';
 import * as openapi from './openapi.json';
 
@@ -98,6 +103,13 @@ export class NotifServiceApplication extends BootMixin(
     });
 
     this.component(RestExplorerComponent);
+    this.bind(NotificationBindings.PushProvider).toProvider(SocketIOProvider);
+
+    this.bind(SocketBindings.Config).to({
+      url: 'ws://localhost:3003',
+      defaultPath: 'general-message',
+      options: {},
+    });
 
     this.projectRoot = __dirname;
     // Customize @loopback/boot Booter Conventions here
