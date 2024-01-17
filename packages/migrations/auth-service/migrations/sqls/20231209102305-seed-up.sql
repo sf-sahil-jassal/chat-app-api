@@ -6,7 +6,7 @@ values ('test_client_id', 'test_client_secret', 'http://localhost:5173/home', 's
 
 -- Inserting roles
 INSERT INTO roles (name, permissions, role_type)
-values ('Admin', '{ViewNotification,CreateNotification,ViewMessage,CreateMessage,CreateMessageRecipient,ViewMessageRecipient,UpdateMessageRecipient,DeleteMessageRecipient}' , 0);
+values ('Admin', '{ViewMessage,CreateMessage,UpdateMessage,DeleteMessage,CreateMessageRecipient,ViewMessageRecipient,UpdateMessageRecipient,DeleteMessageRecipient,ViewNotification,CreateNotification,UpdateNotification,DeleteNotification,CanGetNotificationAccess,ViewChannel,CreateChannel,UpdateChannel,DeleteChannel}' , 0);
   
 -- Inserting tenants
 INSERT INTO tenants (name, status, key)

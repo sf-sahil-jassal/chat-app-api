@@ -4,7 +4,7 @@ import {MessageDataSource} from '../datasources';
 import {Filter, Where} from '@loopback/repository';
 import {SocketMessage, SocketMessageRecipient} from '../models';
 
-export interface Message {
+export interface MessageService {
   // this is where you define the Node.js methods that will be
   // mapped to REST/SOAP/gRPC operations as stated in the datasource
   // json file.
@@ -30,14 +30,14 @@ export interface Message {
   ): Promise<SocketMessageRecipient>;
 }
 
-export class MessageProvider implements Provider<Message> {
+export class MessageServiceProvider implements Provider<MessageService> {
   constructor(
     // message must match the name property in the datasource json file
     @inject('datasources.message')
     protected dataSource: MessageDataSource = new MessageDataSource(),
   ) {}
 
-  value(): Promise<Message> {
+  value(): Promise<MessageService> {
     return getService(this.dataSource);
   }
 }

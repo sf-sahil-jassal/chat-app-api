@@ -29,10 +29,10 @@ export class SocketMessageRecipient extends CoreEntity<SocketMessageRecipient> {
   messageId: string;
 
   @property({
-    type: 'string',
+    type: 'boolean',
     default: false,
   })
-  isRead?: string;
+  isRead?: boolean;
 
   constructor(data?: Partial<SocketMessageRecipient>) {
     super(data);

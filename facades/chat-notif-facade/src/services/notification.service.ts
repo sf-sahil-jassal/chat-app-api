@@ -3,7 +3,7 @@ import {getService} from '@loopback/service-proxy';
 import {NotificationDataSource} from '../datasources';
 import {SocketNotification} from '../models';
 
-export interface Notification {
+export interface NotificationService {
   // this is where you define the Node.js methods that will be
   // mapped to REST/SOAP/gRPC operations as stated in the datasource
   // json file.
@@ -14,14 +14,16 @@ export interface Notification {
   ): Promise<SocketNotification>;
 }
 
-export class NotificationProvider implements Provider<Notification> {
+export class NotificationServiceProvider
+  implements Provider<NotificationService>
+{
   constructor(
     // notification must match the name property in the datasource json file
     @inject('datasources.notification')
     protected dataSource: NotificationDataSource = new NotificationDataSource(),
   ) {}
 
-  value(): Promise<Notification> {
+  value(): Promise<NotificationService> {
     return getService(this.dataSource);
   }
 }
