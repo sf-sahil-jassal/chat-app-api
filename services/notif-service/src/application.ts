@@ -103,7 +103,6 @@ export class NotifServiceApplication extends BootMixin(
     });
 
     this.component(RestExplorerComponent);
-    this.bind(NotificationBindings.PushProvider).toProvider(SocketIOProvider);
 
     this.bind(SocketBindings.Config).to({
       url: 'ws://localhost:3003',
@@ -111,6 +110,7 @@ export class NotifServiceApplication extends BootMixin(
       options: {},
     });
 
+    this.bind(NotificationBindings.PushProvider).toProvider(SocketIOProvider);
     this.projectRoot = __dirname;
     // Customize @loopback/boot Booter Conventions here
     this.bootOptions = {
